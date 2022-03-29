@@ -10,6 +10,7 @@ public class Rate {
     private BigDecimal hourlyReducedRate;
     private BigDecimal visitorCap = BigDecimal.valueOf(10);
     private BigDecimal mgmtMin = BigDecimal.valueOf(4);
+    private BigDecimal studentCap = BigDecimal.valueOf(5.5);
     private ArrayList<Period> reduced = new ArrayList<>();
     private ArrayList<Period> normal = new ArrayList<>();
 
@@ -140,4 +141,17 @@ public class Rate {
             return sum;
         }
     }
+
+    private BigDecimal calStudentRate(BigDecimal sum) {
+
+        float sCap = studentCap.floatValue();
+        float discount = 0.75f;
+
+        if (sum.compareTo(BigDecimal.valueOf(sCap)) < 0)
+            return sum;
+        else
+            return sum.multiply(BigDecimal.valueOf(discount)).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+    }
+
+
 }
