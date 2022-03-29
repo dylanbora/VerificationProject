@@ -108,6 +108,9 @@ public class Rate {
         if(kind == CarParkKind.Visitor) {
             return calVisitorRate(sum);
         }
+        else if(kind == CarParkKind.Management) {
+            return calManagementRate(sum);
+        }
         else {
             return sum;
         }
