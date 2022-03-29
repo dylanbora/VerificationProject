@@ -9,6 +9,7 @@ public class Rate {
     private BigDecimal hourlyNormalRate;
     private BigDecimal hourlyReducedRate;
     private BigDecimal visitorCap = BigDecimal.valueOf(10);
+    private BigDecimal mgmtMin = BigDecimal.valueOf(4);
     private ArrayList<Period> reduced = new ArrayList<>();
     private ArrayList<Period> normal = new ArrayList<>();
 
@@ -117,9 +118,23 @@ public class Rate {
         int vRate = visitorCap.intValue();
         int vDiscount = 2;
 
-        if (sum.compareTo(BigDecimal.valueOf(vRate)) > 0)
+        if (sum.compareTo(BigDecimal.valueOf(vRate)) > 0) {
             return sum.subtract(BigDecimal.valueOf(vRate)).divide(BigDecimal.valueOf(vDiscount), vDiscount, BigDecimal.ROUND_HALF_EVEN);
-        else
+        }
+        else {
             return BigDecimal.valueOf(0);
+        }
+    }
+
+    private BigDecimal calManagementRate(BigDecimal sum) {
+
+        int minPayable = mgmtMin.intValue();
+
+        if (sum.compareTo(BigDecimal.valueOf(minPayable)) < 0) {
+            return BigDecimal.valueOf(minPayable);
+        }
+        else {
+            return sum;
+        }
     }
 }
