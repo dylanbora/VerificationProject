@@ -104,8 +104,12 @@ public class Rate {
         BigDecimal sum = this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours)).add(
                 this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
 
+        if(kind == CarParkKind.Visitor) {
+            return calVisitorRate(sum);
+        }
+        else {
             return sum;
-
+        }
     }
 
     private BigDecimal calVisitorRate(BigDecimal sum) {
