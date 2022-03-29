@@ -113,7 +113,7 @@ public class Rate {
             return calManagementRate(sum);
         }
         else if(kind == CarParkKind.Student) {
-            return calManagementRate(sum);
+            return calStudentRate(sum);
         }
         else {
             return sum;
