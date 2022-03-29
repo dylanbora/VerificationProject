@@ -8,6 +8,7 @@ public class Rate {
     private CarParkKind kind;
     private BigDecimal hourlyNormalRate;
     private BigDecimal hourlyReducedRate;
+    private BigDecimal visitorCap = BigDecimal.valueOf(10);
     private ArrayList<Period> reduced = new ArrayList<>();
     private ArrayList<Period> normal = new ArrayList<>();
 
@@ -105,5 +106,16 @@ public class Rate {
 
             return sum;
 
+    }
+
+    private BigDecimal calVisitorRate(BigDecimal sum) {
+
+        int vRate = visitorCap.intValue();
+        int vDiscount = 2;
+
+        if (sum.compareTo(BigDecimal.valueOf(vRate)) > 0)
+            return sum.subtract(BigDecimal.valueOf(vRate)).divide(BigDecimal.valueOf(vDiscount), vDiscount, BigDecimal.ROUND_HALF_EVEN);
+        else
+            return BigDecimal.valueOf(0);
     }
 }
