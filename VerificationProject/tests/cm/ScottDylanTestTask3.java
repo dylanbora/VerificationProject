@@ -656,11 +656,34 @@ public class ScottDylanTestTask3 {
         int returnOF = calc.compareTo(correctVal);
         assertEquals(0, returnOF, "Expected: (" + correctVal + ") Actual: (" + calc + ")");
 
-
-
-
     }
 
+    @org.junit.jupiter.api.Test // Test to check when only reduced period is not valid
+    public void testTwentyThree(){
 
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        normalRate = BigDecimal.valueOf(10);
+        reducedRate = BigDecimal.valueOf(5);
+
+        startHourNormal = 12;
+        endHourNormal = 13;
+        secondStartHourNormal = 14;
+        secondEndHourNormal = 15;
+
+        startHourReduced = 12;
+        endHourReduced = 13;
+        secondStartHourReduced = 12;
+        secondEndHourReduced = 16;
+
+
+        reducedPeriods = calPeriod(reducedPeriods, startHourReduced, endHourReduced);
+        reducedPeriods = calPeriod(reducedPeriods, secondStartHourReduced, secondEndHourReduced);
+        normalPeriods = calPeriod(normalPeriods, startHourNormal, endHourNormal);
+        normalPeriods = calPeriod(normalPeriods, secondStartHourNormal, secondEndHourNormal);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
+
+    }
 
 }
