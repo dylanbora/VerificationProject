@@ -593,8 +593,8 @@ public class ScottDylanTestTask2 {
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> periodStay = new ArrayList<Period>();
 
-        normalRate = BigDecimal.valueOf(10);
-        reducedRate = BigDecimal.valueOf(5);
+        normalRate = BigDecimal.valueOf(2);
+        reducedRate = BigDecimal.valueOf(1);
         kind = CarParkKind.Staff;
 
         startHourNormal = 2;
@@ -619,7 +619,7 @@ public class ScottDylanTestTask2 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
 
-        BigDecimal correctVal = BigDecimal.valueOf(16);
+        BigDecimal correctVal = BigDecimal.valueOf(8);
         calc = rate.calculate(periodStay.get(0));
         int returnOF = calc.compareTo(correctVal);
         assertEquals(0, returnOF, "Expected: (" + correctVal + ") Actual: (" + calc + ")");
