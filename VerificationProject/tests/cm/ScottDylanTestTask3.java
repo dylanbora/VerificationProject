@@ -1,12 +1,8 @@
-import cm.CarParkKind;
-import cm.Period;
-import cm.Rate;
-import org.junit.jupiter.api.Test;
+package cm;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class ScottDylanTestTask3 {
@@ -683,6 +679,39 @@ public class ScottDylanTestTask3 {
         normalPeriods = calPeriod(normalPeriods, secondStartHourNormal, secondEndHourNormal);
 
         Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
+
+    }
+
+    @org.junit.jupiter.api.Test // Test to check when there are 3 periods
+    public void testTwentyFour(){
+
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        normalRate = BigDecimal.valueOf(10);
+        reducedRate = BigDecimal.valueOf(5);
+
+        startHourNormal = 12;
+        endHourNormal = 13;
+        secondStartHourNormal = 14;
+        secondEndHourNormal = 15;
+
+        startHourReduced = 12;
+        endHourReduced = 13;
+        secondStartHourReduced = 12;
+        secondEndHourReduced = 16;
+        int thirdStartHourReduced = 16;
+        int thirdEndHourReduced = 17;
+
+
+
+
+        reducedPeriods = calPeriod(reducedPeriods, startHourReduced, endHourReduced);
+        reducedPeriods = calPeriod(reducedPeriods, secondStartHourReduced, secondEndHourReduced);
+        reducedPeriods = calPeriod(reducedPeriods, thirdStartHourReduced, thirdEndHourReduced);
+        normalPeriods = calPeriod(normalPeriods, startHourNormal, endHourNormal);
+        normalPeriods = calPeriod(normalPeriods, secondStartHourNormal, secondEndHourNormal);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods,normalPeriods);
 
     }
 
