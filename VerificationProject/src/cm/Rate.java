@@ -49,13 +49,6 @@ public class Rate {
      * @return true if the two collections of periods are valid together
      */
 
-    public BigDecimal getHourlyNormalRate(){
-        return hourlyNormalRate;
-    }
-
-    public BigDecimal getHourlyReducedRate(){
-        return hourlyReducedRate;
-    }
 
     private boolean isValidPeriods(ArrayList<Period> periods1, ArrayList<Period> periods2) {
         Boolean isValid = true;

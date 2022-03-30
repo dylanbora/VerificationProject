@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class ScottDylanTestTask3 {
@@ -619,5 +620,47 @@ public class ScottDylanTestTask3 {
         assertEquals(0, returnOF, "Expected: (" + correctVal + ") Actual: (" + calc + ")");
 
     }
+
+    @org.junit.jupiter.api.Test // Test to check when only one period in list
+    public void testTwentyTwo(){
+
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> periodStay = new ArrayList<Period>();
+
+        normalRate = BigDecimal.valueOf(2);
+        reducedRate = BigDecimal.valueOf(1);
+        kind = CarParkKind.Staff;
+
+        startHourNormal = 2;
+        endHourNormal = 6;
+
+        startHourReduced = 7;
+        endHourReduced = 10;
+        secondStartHourReduced = 12;
+        secondEndHourReduced = 17;
+
+        BigDecimal calc = BigDecimal.ZERO;
+
+        int periodStart = 1;
+        int periodEnd = 6;
+        reducedPeriods = calPeriod(reducedPeriods, startHourReduced, endHourReduced);
+        reducedPeriods = calPeriod(reducedPeriods, secondStartHourReduced, secondEndHourReduced);
+        normalPeriods = calPeriod(normalPeriods, startHourNormal, endHourNormal);
+        periodStay = calPeriod(periodStay, periodStart, periodEnd);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
+
+        BigDecimal correctVal = BigDecimal.valueOf(8);
+        calc = rate.calculate(periodStay.get(0));
+        int returnOF = calc.compareTo(correctVal);
+        assertEquals(0, returnOF, "Expected: (" + correctVal + ") Actual: (" + calc + ")");
+
+
+
+
+    }
+
+
 
 }
