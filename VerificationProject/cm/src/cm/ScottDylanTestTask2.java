@@ -459,7 +459,47 @@ public class ScottDylanTestTask2 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
 
-        BigDecimal correctVal = BigDecimal.valueOf(30);
+        BigDecimal correctVal = BigDecimal.valueOf(16);
+        calc = rate.calculate(periodStay.get(0));
+        int returnOF = calc.compareTo(correctVal);
+        assertEquals(0, returnOF, "Expected: (" + correctVal + ") Actual: (" + calc + ")");
+
+    }
+
+    @org.junit.jupiter.api.Test // Test to check visitor rate below minimum.
+    public void testEighteen(){
+
+        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
+        ArrayList<Period> normalPeriods = new ArrayList<Period>();
+        ArrayList<Period> periodStay = new ArrayList<Period>();
+
+        normalRate = BigDecimal.valueOf(4);
+        reducedRate = BigDecimal.valueOf(2);
+        kind = CarParkKind.Visitor;
+
+        startHourNormal = 2;
+        endHourNormal = 6;
+        secondStartHourNormal = 19;
+        secondEndHourNormal = 21;
+
+        startHourReduced = 7;
+        endHourReduced = 10;
+        secondStartHourReduced = 12;
+        secondEndHourReduced = 17;
+
+        BigDecimal calc = BigDecimal.ZERO;
+
+        int periodStart = 1;
+        int periodEnd = 3;
+        reducedPeriods = calPeriod(reducedPeriods, startHourReduced, endHourReduced);
+        reducedPeriods = calPeriod(reducedPeriods, secondStartHourReduced, secondEndHourReduced);
+        normalPeriods = calPeriod(normalPeriods, startHourNormal, endHourNormal);
+        normalPeriods = calPeriod(normalPeriods, secondStartHourNormal, secondEndHourNormal);
+        periodStay = calPeriod(periodStay, periodStart, periodEnd);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
+
+        BigDecimal correctVal = BigDecimal.valueOf(16);
         calc = rate.calculate(periodStay.get(0));
         int returnOF = calc.compareTo(correctVal);
         assertEquals(0, returnOF, "Expected: (" + correctVal + ") Actual: (" + calc + ")");
