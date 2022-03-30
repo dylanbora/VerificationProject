@@ -579,7 +579,7 @@ public class ScottDylanTestTask2 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
 
-        BigDecimal correctVal = BigDecimal.valueOf(40);
+        BigDecimal correctVal = BigDecimal.valueOf(4);
         calc = rate.calculate(periodStay.get(0));
         int returnOF = calc.compareTo(correctVal);
         assertEquals(0, returnOF, "Expected: (" + correctVal + ") Actual: (" + calc + ")");
