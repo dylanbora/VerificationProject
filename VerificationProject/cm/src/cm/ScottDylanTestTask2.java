@@ -506,16 +506,16 @@ public class ScottDylanTestTask2 {
 
     }
 
-    @org.junit.jupiter.api.Test // Test to check management rate below minimum payable.
+    @org.junit.jupiter.api.Test // Test to check student rate below minimum payable.
     public void testNineteen(){
 
         ArrayList<Period> reducedPeriods = new ArrayList<Period>();
         ArrayList<Period> normalPeriods = new ArrayList<Period>();
         ArrayList<Period> periodStay = new ArrayList<Period>();
 
-        normalRate = BigDecimal.valueOf(10);
-        reducedRate = BigDecimal.valueOf(5);
-        kind = CarParkKind.Management;
+        normalRate = BigDecimal.valueOf(2);
+        reducedRate = BigDecimal.valueOf(1);
+        kind = CarParkKind.Student;
 
         startHourNormal = 2;
         endHourNormal = 6;
@@ -529,8 +529,8 @@ public class ScottDylanTestTask2 {
 
         BigDecimal calc = BigDecimal.ZERO;
 
-        int periodStart = 1;
-        int periodEnd = 6;
+        int periodStart = 2;
+        int periodEnd = 3;
         reducedPeriods = calPeriod(reducedPeriods, startHourReduced, endHourReduced);
         reducedPeriods = calPeriod(reducedPeriods, secondStartHourReduced, secondEndHourReduced);
         normalPeriods = calPeriod(normalPeriods, startHourNormal, endHourNormal);
@@ -539,7 +539,7 @@ public class ScottDylanTestTask2 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
 
-        BigDecimal correctVal = BigDecimal.valueOf(40);
+        BigDecimal correctVal = BigDecimal.valueOf(2);
         calc = rate.calculate(periodStay.get(0));
         int returnOF = calc.compareTo(correctVal);
         assertEquals(0, returnOF, "Expected: (" + correctVal + ") Actual: (" + calc + ")");
