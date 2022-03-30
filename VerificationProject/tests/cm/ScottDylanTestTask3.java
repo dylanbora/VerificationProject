@@ -1,22 +1,16 @@
-package cm;
-
-
+import cm.CarParkKind;
+import cm.Period;
+import cm.Rate;
 import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ScottDylanTestTask2 {
 
+public class ScottDylanTestTask3 {
 
     private ArrayList<Period> Null;
-
-    public ScottDylanTestTask2() {
-
-    }
 
     cm.CarParkKind kind;
     BigDecimal normalRate = BigDecimal.valueOf(10);
@@ -625,4 +619,5 @@ public class ScottDylanTestTask2 {
         assertEquals(0, returnOF, "Expected: (" + correctVal + ") Actual: (" + calc + ")");
 
     }
+
 }
